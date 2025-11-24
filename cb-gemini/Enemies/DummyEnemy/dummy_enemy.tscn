@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx4iqwtx80nnt" path="res://Enemies/DummyEnemy/DummyEnemy.gd" id="1_wiado"]
 [ext_resource type="Script" uid="uid://d0170xy477263" path="res://Shared/Scripts/HealthComponent.gd" id="2_gociu"]
-[ext_resource type="Texture2D" uid="uid://d11yl6sxi3c6d" path="res://icon.svg" id="2_tddfb"]
+[ext_resource type="Texture2D" uid="uid://dcdhx0cji8u46" path="res://assets/256x256/Grass/Grass 7 - 256x256.png" id="2_w0w3w"]
 [ext_resource type="PackedScene" uid="uid://c1hs512dj70sh" path="res://UI-HUD/Enemy/EnemyHealthbar3D.tscn" id="4_y7v25"]
 [ext_resource type="Script" uid="uid://r432o4ctwgv0" path="res://Enemies/EnemyComponents/EnemyMovementComponent.gd" id="5_16re4"]
 [ext_resource type="Script" uid="uid://bwvp7e2v0icok" path="res://Enemies/EnemyComponents/EnemyCombatComponent.gd" id="6_w0w3w"]
@@ -10,7 +10,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xrxs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tddfb"]
-albedo_texture = ExtResource("2_tddfb")
+albedo_texture = ExtResource("2_w0w3w")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7v25"]
 material = SubResource("StandardMaterial3D_tddfb")
