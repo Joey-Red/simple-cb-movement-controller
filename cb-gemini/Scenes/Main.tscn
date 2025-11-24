@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=3 uid="uid://disnqn4r1gsq"]
+
+[ext_resource type="Texture2D" uid="uid://dn5yahrlq2y44" path="res://assets/256x256/Grass/Grass 9 - 256x256.png" id="1_idj7w"]
+[ext_resource type="PackedScene" uid="uid://dg1cnchkr2ne1" path="res://Enemies/Spawner/EnemySpawner.tscn" id="1_v1gob"]
+[ext_resource type="Texture2D" uid="uid://c25gb02vrf5lq" path="res://assets/256x256/Bricks/Brick 5 - 256x256.png" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://cin4v02olp0om" path="res://assets/256x256/Bricks/Brick 6 - 256x256.png" id="3_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://nbj868k22jx2" path="res://assets/256x256/Wood/Wood 4 - 256x256.png" id="4_v1gob"]
+[ext_resource type="PackedScene" uid="uid://fl35pvoq34i8" path="res://Player/Spawner/player_spawner.tscn" id="6_v1gob"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r150o"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_idj7w"]
+sky_material = SubResource("ProceduralSkyMaterial_r150o")
+
+[sub_resource type="Environment" id="Environment_kln2b"]
+background_mode = 2
+sky = SubResource("Sky_idj7w")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_v1gob"]
+vertices = PackedVector3Array(14.25, 7, -14.090391, 14, 7, 14.409609, 14.5, 7, 14.409609, 14.5, 7, -14.590391, -14.5, 7, 14.409609, -14, 7, 14.409609, -14, 7, -14.340391, -14.5, 7, -14.590391, 13.25, 1, 13.409609, 13.25, 1, 3.9096088, 9.25, 1, 3.6596088, -13.25, 1, 13.409609, 9.25, 1, -0.84039116, 13.25, 1, -1.0903912, 13.25, 1, -13.340391, -13.25, 1, -13.340391, -9.75, 4.75, 4.159609, -9.75, 4.75, 13.409609, 13.25, 4.75, 13.409609, 13.25, 4.75, 4.159609)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(0, 6, 3), PackedInt32Array(3, 6, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 15), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kln2b"]
+albedo_texture = ExtResource("1_idj7w")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgh2o"]
+albedo_texture = ExtResource("2_kln2b")
+uv1_scale = Vector3(6, 6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbw6q"]
+albedo_texture = ExtResource("3_rgh2o")
+uv1_scale = Vector3(6, 6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jw32o"]
+albedo_texture = ExtResource("4_v1gob")
+uv1_triplanar = true
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kln2b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_v1gob")
+
+[node name="Ground" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(30, 1, 30)
+material = SubResource("StandardMaterial3D_kln2b")
+
+[node name="Wall" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -14.484068)
+use_collision = true
+size = Vector3(30, 6, 1)
+material = SubResource("StandardMaterial3D_rgh2o")
+
+[node name="Wall2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 14.433324)
+use_collision = true
+size = Vector3(30, 6, 1)
+material = SubResource("StandardMaterial3D_rgh2o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -14.440429, 3.5, -0.09039211)
+use_collision = true
+size = Vector3(30, 6, 1)
+material = SubResource("StandardMaterial3D_pbw6q")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 14.439914, 3.5, -0.09039211)
+use_collision = true
+size = Vector3(30, 6, 1)
+material = SubResource("StandardMaterial3D_pbw6q")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 0.63709617, 0)
+use_collision = true
+size = Vector3(4, 1, 1)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 1.4016968, 0.9037957)
+use_collision = true
+size = Vector3(4, 1, 1)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 2.090969, 1.8085566)
+use_collision = true
+size = Vector3(4, 1, 1)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 2.593336, 2.7038503)
+use_collision = true
+size = Vector3(4, 1, 1)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 3.027313, 3.5410736)
+use_collision = true
+size = Vector3(4, 1, 1)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.938308, 3.833447, 9.162594)
+use_collision = true
+size = Vector3(4, 1, 11)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04047203, 3.833447, 9.162594)
+use_collision = true
+size = Vector3(20, 1, 11)
+material = SubResource("StandardMaterial3D_jw32o")
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("6_v1gob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8135037, 5.2934937, 5.5240483)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_v1gob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0417542, 0)
