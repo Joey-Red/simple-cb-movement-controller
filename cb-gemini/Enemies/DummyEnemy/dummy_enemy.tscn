@@ -37,7 +37,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 texture = SubResource("ViewportTexture_y7v25")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 1.5
 
 [node name="Components" type="Node" parent="."]
 
