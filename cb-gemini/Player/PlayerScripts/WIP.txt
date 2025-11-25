@@ -12,8 +12,13 @@ Need to create a player spawner, and remove the script attached to Main level
 
 Work on Simple Enemy AI, Animations, etc. how smart?
 - have enemy ai that follow,
+
 TODO ENEMY AI: right now they just follow, super basic. 
-TODO ENEMY AI: when player dies, they do not retarget.
+
+Enemy AI - when player dies, they do not retarget.
+- They now retarget
 
 TODO: make Sure player has no control after death until respawn.
-maybe add death screen
+- WASD disabled, added death animation so mouse control is fine ig.
+
+maybe add death/respawn screen

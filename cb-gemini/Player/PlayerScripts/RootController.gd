@@ -9,7 +9,8 @@ signal on_player_died
 @onready var combat = $Components/Combat
 @onready var camera_rig = $Head/Camera3D
 @onready var health = $Components/HealthComponent
-
+@onready var AnimPlayer = $AnimationPlayer
+@onready var AnimTree = $AnimationTree
 func _ready():
 	# Lock mouse for FPS
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -28,10 +29,12 @@ func take_damage(amount):
 
 func _on_death_logic():
 	
-	# 1. Notify the Spawner
 	on_player_died.emit()
-	# 2. Disable Physics/Input
 	set_physics_process(false)
+	# Do animation
+	AnimTree["parameters/LifeState/transition_request"] = "dead"
+	AnimPlayer.stop()
+	
 	SignalBus.player_died.emit()
 	await get_tree().create_timer(2.0).timeout
 	queue_free()
