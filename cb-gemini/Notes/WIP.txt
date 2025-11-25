@@ -22,3 +22,4 @@ TODO: make Sure player has no control after death until respawn.
 - WASD disabled, added death animation so mouse control is fine ig.
 
 maybe add death/respawn screen
+- Added death fade out, respawn fade in, button to respawn etc.
